@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+            <form onsubmit="event.preventDefault(); login();"> <!-- Agregado para manejar el submit -->
+                <label for="login-username">Username</label> <!-- Cambiado de 'email' a 'login-username' -->
+                <input type="text" id="login-username" placeholder="ejemplo@gmail.com">
+                
+                <label for="login-password">Contraseña</label> <!-- Cambiado de 'password' a 'login-password' -->
+                <input type="password" id="login-password" placeholder="********">
+                
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/login.js"></script> <!-- Vincular el archivo login.js -->
+</body>
+</html>

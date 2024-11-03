@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de Divisas</title>
+    <link rel="stylesheet" href="../css/exchangeRates.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="top-nav">
+            <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+            <div id="nav-links"></div>
+        </nav>
+
+        <main class="content">
+            <h2>Cambio de Divisas</h2>
+            <p>Ingresa una cantidad en Bolivianos para ver el equivalente en otras divisas.</p>
+
+            <div id="exchange-container">
+                <input type="number" id="amount-bob" placeholder="Monto en Bolivianos (BOB)" min="0" step="0.01">
+                <button onclick="convertCurrency()">Convertir</button>
+
+                <table id="exchange-rates-table">
+                    <thead>
+                        <tr>
+                            <th>Moneda</th>
+                            <th>Código</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="exchange-rates">
+                        <!-- Aquí se mostrarán los resultados de la conversión -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/exchangeRates.js"></script>
+    <script>
+        // Determinar el rol del usuario y ajustar la navegación
+        const role = localStorage.getItem('loggedInUserRole');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (role === 'admin') {
+            navLinks.innerHTML = `
+                <a href="UserManager.html">Agregar Usuario</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            navLinks.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>

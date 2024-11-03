@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo Empresario - Publicaciones</title>
+    <link rel="stylesheet" href="../css/yoEmpresario_list.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+            <h3>Filtros</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> Seguro</label>
+                <label><input type="checkbox"> Transporte</label>
+                <label><input type="checkbox"> Empresarial</label>
+            </div>
+        </aside>
+        <main class="content">
+            <nav class="top-nav">
+                <button id="toggleSidebar" class="toggle-btn">☰</button>
+                <div id="nav-links"></div>
+            </nav>
+            
+            <div class="post">
+                <img src="../images/imgplaceholder.png" alt="Post Image" class="post-image">
+                <div class="post-details">
+                    <h4>Agropecuaria</h4>
+                    <h5>Post 1</h5>
+                    <p>Descripción</p>
+                    <p>Ubicación</p>
+                </div>
+            </div>
+            <div class="post">
+                <img src="../images/imgplaceholder.png" alt="Post Image" class="post-image">
+                <div class="post-details">
+                    <h4>Transporte</h4>
+                    <h5>Post 2</h5>
+                    <p>Descripción</p>
+                    <p>Ubicación</p>
+                </div>
+            </div>
+            <button class="fab edit-btn" onclick="window.location.href='yoEmpresario_edit.html'">✎</button>
+            <button class="fab add-btn" onclick="window.location.href='yoEmpresario_create.html'">+</button>
+        </main>
+    </div>
+    
+    <script src="../js/toggleSidebar.js"></script>
+    <script>
+        // Determinar el rol del usuario y ajustar la navegación
+        const role = localStorage.getItem('loggedInUserRole');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (role === 'admin') {
+            navLinks.innerHTML = `
+                <a href="UserManager.html">Agregar Usuario</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            navLinks.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>

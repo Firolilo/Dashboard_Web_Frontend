@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Post (Yo Empresario)</title>
+    <link rel="stylesheet" href="../css/crear_post.css">
+</head>
+<body>
+    <div class="header">
+        <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+        <nav class="top-nav">
+            <div id="nav-links"></div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Editar Publicación</h2>
+
+        <div class="image-section">
+            <img src="../images/imgplaceholder.png" alt="Placeholder" class="post-image">
+            <button class="fab add-image-btn">+</button>
+        </div>
+
+        <form class="post-form">
+            <label for="sector">Sector</label>
+            <input type="text" id="sector" name="sector" placeholder="Sector">
+
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Título">
+
+            <label for="descripcion">Descripción</label>
+            <input type="text" id="descripcion" name="descripcion" placeholder="Descripción">
+        </form>
+
+        <button class="fab submit-btn" onclick="window.location.href='yoEmpresario_list.html'">✓</button>
+    </div>
+
+    <script>
+        // Determinar el rol del usuario y ajustar la navegación
+        const role = localStorage.getItem('loggedInUserRole');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (role === 'admin') {
+            navLinks.innerHTML = `
+                <a href="UserManager.html">Agregar Usuario</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            navLinks.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>

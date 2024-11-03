@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo Empresario - Publicaciones</title>
+    <link rel="stylesheet" href="../css/maps.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+            <h3>Filtros</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> Seguro</label>
+                <label><input type="checkbox"> Transporte</label>
+                <label><input type="checkbox"> Empresarial</label>
+            </div>
+        </aside>
+        <main class="content">
+            <nav class="top-nav">
+                <button id="toggleSidebar" class="toggle-btn">☰</button>
+                <div id="nav-links"></div>
+            </nav>
+            
+            <div id="map" style="height: 500px; margin-top: 20px;"></div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="../js/toggleSidebar.js"></script>
+    <script>
+        // Inicializar el mapa
+        const map = L.map('map').setView([-17.784, -63.1805], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        const marker = L.marker([-17.784, -63.1805]).addTo(map);
+        marker.bindPopup("<b>Hello!</b><br>This is Santa Cruz, Bolivia.").openPopup();
+
+        // Determinar el rol del usuario y ajustar la navegación
+        const role = localStorage.getItem('loggedInUserRole');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (role === 'admin') {
+            navLinks.innerHTML = `
+                <a href="UserManager.html">Agregar Usuario</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            navLinks.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>

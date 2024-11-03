@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <main class="content">
+            <nav class="top-nav">
+                <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+                <a href="UserManager.html">Gestión de Usuarios</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            </nav>
+
+            <h2>Bienvenido Administrador</h2>
+
+            <!-- Botón para generar el reporte -->
+            <button onclick="generateReport()">Generar reporte</button>
+
+            <!-- Sección para agregar un nuevo usuario -->
+            <h3>Agregar Usuario</h3>
+            <div class="form-container">
+                <form onsubmit="event.preventDefault(); addUser();">
+                    <input type="text" id="new-username" placeholder="Nuevo Username" required>
+                    <input type="password" id="new-password" placeholder="Nuevo Password" required>
+                    <select id="new-role" required>
+                        <option value="" disabled selected>Rol</option>
+                        <option value="admin">Administrador</option>
+                        <option value="user">Usuario</option>
+                    </select>
+                    <button type="submit" class="submit-btn">Agregar Usuario</button>
+                </form>
+            </div>
+
+            <!-- Lista de usuarios registrados -->
+            <h3>Usuarios Registrados</h3>
+            <ul id="user-list"></ul>
+
+            <!-- Modal para editar usuario -->
+            <div id="edit-user-modal" style="display: none;">
+                <h4>Editar Usuario</h4>
+                <input type="text" id="edit-username" placeholder="Nuevo Username">
+                <input type="text" id="edit-password" placeholder="Nuevo Password">
+                <select id="edit-role">
+                    <option value="user">Usuario</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                <button onclick="saveChanges()">Guardar Cambios</button>
+                <button onclick="cancelEdit()">Cancelar</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script> 
+    <script>
+        // Inicializar administrador y cargar usuarios al cargar la página
+        initializeAdmin();
+        loadUsers();
+    </script>
+</body>
+</html>

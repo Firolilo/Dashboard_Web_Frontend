@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Web - Pagina Principal</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+            <h3>Sector</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="checkbox-seguro" onclick="toggleCardVisibility('card-seguro')"> Seguro</label>
+                <label><input type="checkbox" id="checkbox-transporte" onclick="toggleCardVisibility('card-transporte')"> Transporte</label>
+                <label><input type="checkbox" id="checkbox-empresarial" onclick="toggleCardVisibility('card-empresarial')"> Empresarial</label>
+            </div>
+            <h3>Vistas</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="checkbox-cambio" onclick="toggleCardVisibility('card-cambio')"> Cambio</label>
+                <label><input type="checkbox" id="checkbox-HdB" onclick="toggleCardVisibility('card-HdB')"> Histórico de boliviano</label>
+                <label><input type="checkbox" id="checkbox-ITH" onclick="toggleCardVisibility('card-ITH')"> Indicador de Talento Humano</label>
+            </div>
+        </aside>
+        <main class="content">
+            <!-- Barra de navegación con opciones según el rol del usuario -->
+            <nav class="top-nav" id="navbar">
+                <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+                <!-- Las opciones se cargarán dinámicamente con JavaScript -->
+            </nav>
+
+            <!-- Saludo personalizado -->
+            <h2>Hola, <span id="username-display"></span>!</h2>
+
+            <!-- Botón para generar el reporte -->
+            <button onclick="generateReport()">Generar reporte</button>
+
+            <!-- Contenido del dashboard -->
+            <div class="card-container">
+                <div class="card" id="card-seguro">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">   
+                    KPI #1
+                </div>
+                <div class="card" id="card-transporte">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">
+                    KPI #2
+                </div>
+                <div class="card" id="card-empresarial">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">
+                    KPI #3
+                </div>
+                <div class="card" id="card-cambio">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">
+                    Cambio
+                </div>
+                <div class="card" id="card-HdB">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">
+                    Histórico del Boliviano
+                </div>
+                <div class="card" id="card-ITH">
+                    <img src="../images/imgplaceholder.png" alt="KPI 1" width="100%">
+                    Indicador de Talento Humano
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts adicionales -->
+    <script src="../js/toggleSidebar.js"></script>
+    <script src="../js/toggleCard.js"></script>
+
+    <script>
+        // Mostrar nombre de usuario desde localStorage
+        const username = localStorage.getItem('loggedInUser');
+        document.getElementById('username-display').innerText = username ? username : "Usuario";
+
+        // Verificar el rol del usuario y mostrar opciones de navegación
+        const role = localStorage.getItem('loggedInUserRole');
+        const navbar = document.getElementById('navbar');
+
+        if (role === 'admin') {
+            // Opciones de administrador
+            navbar.innerHTML = `
+                <a href="UserManager.html">Gestión de Usuarios</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            // Opciones para usuarios normales
+            navbar.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceptar Posts - Admin</title>
+    <link rel="stylesheet" href="../css/handleReq.css">
+</head>
+<body>
+    <div class="container">
+        <main class="content">
+            <nav class="top-nav">
+                <img src="../images/fepscLogo.png" alt="FEPSC Logo" class="logo">
+                <div id="nav-links"></div>
+            </nav>
+            
+            <div class="post-container">
+                <div class="post">
+                    <img src="../images/imgplaceholder.png" alt="Post Image" class="post-image">
+                    <div class="post-details">
+                        <h4>Agropecuaria</h4>
+                        <h5>Post 1</h5>
+                        <p>Descripción</p>
+                        <p>Ubicación</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn accept">✓</button>
+                        <button class="action-btn reject">✕</button>
+                    </div>
+                </div>
+        
+                <div class="post">
+                    <img src="../images/imgplaceholder.png" alt="Post Image" class="post-image">
+                    <div class="post-details">
+                        <h4>Agropecuaria</h4>
+                        <h5>Post 1</h5>
+                        <p>Descripción</p>
+                        <p>Ubicación</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn accept">✓</button>
+                        <button class="action-btn reject">✕</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/toggleSidebar.js"></script>
+    <script>
+        const role = localStorage.getItem('loggedInUserRole');
+        const navLinks = document.getElementById('nav-links');
+        if (role === 'admin') {
+            navLinks.innerHTML = `
+                <a href="UserManager.html">Agregar Usuario</a>
+                <a href="handleRequests.html">Manejar Posts</a>
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        } else {
+            navLinks.innerHTML = `
+                <a href="index.html">Analíticas</a>
+                <a href="maps.html" class="highlight">Mapa</a>
+                <a href="yoEmpresario_list.html">Yo Empresario</a>
+                <a href="exchangeRates.html" class="highlight">Cambio de Divisas</a>
+            `;
+        }
+    </script>
+</body>
+</html>
